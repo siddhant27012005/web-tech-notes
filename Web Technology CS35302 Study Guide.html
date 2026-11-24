@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Web Technology CS35302 – Study Guide</title>
+<style>
+:root{--bg:#f3f6fb;--sf:#fff;--ink:#14213d;--mu:#5a6784;--ln:#d5deee;--ac:#1b5fd6;--ok:#1f8a5b;--bad:#c23b3b;--tn:#e6eefc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1626;--sf:#18223a;--ink:#e8edf8;--mu:#9aa8c7;--ln:#2b3858;--ac:#6aa0ff;--ok:#4cc38a;--bad:#ff7b7b;--tn:#1e2d52}}
+:root[data-theme="dark"]{--bg:#0f1626;--sf:#18223a;--ink:#e8edf8;--mu:#9aa8c7;--ln:#2b3858;--ac:#6aa0ff;--ok:#4cc38a;--bad:#ff7b7b;--tn:#1e2d52}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+h1,h2{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0}
+.top{background:var(--sf);border-bottom:1px solid var(--ln);padding:14px 20px}
+.top h1{font-size:1.4rem}.top p{margin:2px 0 0;color:var(--mu);font-size:.9rem}
+.bar{height:8px;background:var(--ln);border-radius:6px;overflow:hidden;margin-top:10px}.bar div{height:100%;width:0;background:var(--ok);transition:width .3s}
+.wrap{display:grid;grid-template-columns:250px 1fr;gap:24px;max-width:1100px;margin:auto;padding:20px}
+nav{position:sticky;top:12px;align-self:start;display:flex;flex-direction:column;gap:6px}
+nav a{display:block;padding:10px 12px;border:1px solid var(--ln);border-radius:8px;background:var(--sf);color:var(--ink);text-decoration:none;font-size:.95rem}
+nav a small{display:block;color:var(--mu)}nav a.on{border-color:var(--ac);background:var(--tn)}
+input[type=search]{padding:10px;border:1px solid var(--ln);border-radius:8px;background:var(--sf);color:var(--ink);font:inherit;width:100%}
+button{font:inherit;padding:8px 13px;border:1px solid var(--ln);border-radius:8px;background:var(--sf);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--ac)}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+main{min-width:0}main h2{font-size:1.7rem}
+.ov{color:var(--mu);margin:6px 0 16px}
+.sec{font-size:1.15rem;margin:26px 0 8px;font-family:Georgia,serif}
+details.tp{background:var(--sf);border:1px solid var(--ln);border-radius:10px;margin:8px 0}
+details.tp>summary{cursor:pointer;padding:12px 14px;font-weight:600;display:flex;gap:10px;align-items:center}
+details.tp.done>summary span{color:var(--mu);text-decoration:line-through}
+summary input{width:18px;height:18px;accent-color:var(--ok);flex:none}
+.tp ul{margin:0;padding:0 18px 12px 36px}.tp li{margin:4px 0}
+.hide{display:none}
+.terms{display:flex;flex-wrap:wrap;gap:6px}.terms span{background:var(--tn);border-radius:20px;padding:3px 12px;font-size:.9rem}
+ol.ex{padding-left:22px}ol.ex li{margin:6px 0}
+.q{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:12px 14px;margin:10px 0}
+.q p{margin:0 0 8px;font-weight:600}
+.q button{display:block;width:100%;text-align:left;margin:5px 0}
+.q button.r{border-color:var(--ok);background:var(--tn)}.q button.w{border-color:var(--bad)}
+.score{font-weight:600;color:var(--ac)}
+.pn{display:flex;justify-content:space-between;margin-top:28px}
+@media(max-width:760px){.wrap{grid-template-columns:1fr;padding:14px}nav{position:static;flex-direction:row;overflow-x:auto}nav a{white-space:nowrap}nav a small{display:none}}
+</style></head><body>
+<div class="top"><h1>Web Technology (CS35302)</h1><p>B.Tech CSE, Semester 5 · Quantum School of Technology · 36 lecture hours</p>
+<div class="bar"><div id="fill"></div></div><p id="pct"></p></div>
+<div class="wrap"><nav id="nav"></nav><main id="main"></main></div>
+<script>
+var D=[
+{id:"unit-1",n:"Unit 1",t:"Internet and web basics",h:7,ov:"How the Internet works and the protocols and servers behind every web page.",
+T:[
+["History of the Internet",["1969: ARPANET, the first packet-switched network, linked US universities.","1983: TCP/IP became the standard; networks joined into the Internet.","Internet = global network of networks. Web = a service running on it."]],
+["World Wide Web and HTML",["Tim Berners-Lee proposed the Web at CERN in 1989; first browser in 1990.","HTML (HyperText Markup Language) describes structure using tags and attributes.","Basic skeleton: html, head (title, meta), body. Pages link with the a tag (hyperlinks)."]],
+["HTTP",["Stateless client-server protocol, port 80 (HTTPS uses TLS, port 443).","Methods: GET (read), POST (send data), PUT (replace), DELETE (remove), HEAD.","Status codes: 2xx success, 3xx redirect, 4xx client error (404), 5xx server error (500).","Cookies and sessions add state on top of stateless HTTP."]],
+["SMTP",["Simple Mail Transfer Protocol, port 25 (587 for submission).","Push protocol: sends mail from client to server and between servers.","Text commands: HELO, MAIL FROM, RCPT TO, DATA, QUIT."]],
+["POP3 and IMAP",["POP3 (port 110) downloads mail to one device, usually deleting it from the server.","IMAP (port 143) keeps mail on the server, so folders and read status sync across devices.","Both retrieve mail; neither sends it."]],
+["MIME",["Multipurpose Internet Mail Extensions: sends non-ASCII text, images, audio, attachments.","Headers: MIME-Version, Content-Type (text/html, image/png), Content-Transfer-Encoding (base64).","Also used by HTTP to tell the browser what a response contains."]],
+["Domain Name Server (DNS)",["Translates names like example.com into IP addresses.","Hierarchy: root, top-level domain (.com, .in), authoritative server.","Resolver caches answers. Record types: A, AAAA, CNAME, MX, NS."]],
+["Web browsers",["Client software that requests, receives and renders web content.","Parts: user interface, rendering engine (Blink, Gecko), JavaScript engine (V8), network layer.","Example browsers: Chrome, Firefox, Safari, Edge."]],
+["Web servers",["Software that listens for HTTP requests and returns pages or data.","Examples: Apache, Nginx, Microsoft IIS, Tomcat (Java servlets).","Serves static files or passes dynamic requests to PHP, Node.js, Java, etc."]]],
+K:["ARPANET","TCP/IP","HTTP/HTTPS","SMTP","POP3","IMAP","MIME","DNS","URL","Browser","Web server"],
+E:["Differentiate between POP3 and IMAP.","Explain how DNS resolves a domain name.","Describe the HTTP request/response cycle with methods and status codes.","What is MIME? Why is it needed?","Compare web browsers and web servers."],
+Q:[["Which protocol is used to send email?",["POP3","SMTP","IMAP","FTP"],1],["HTTP status 404 means:",["Server error","Redirect","Not found","Success"],2],["Which DNS record maps a name to an IPv4 address?",["MX","CNAME","A","NS"],2]]},
+{id:"unit-2",n:"Unit 2",t:"HTML, CSS, JavaScript and XML",h:8,ov:"Building and styling pages, making them dynamic, and structuring data with XML.",
+T:[
+["Lists, tables, images",["Lists: ul (bullets), ol (numbered), dl (term/definition).","Tables: table, tr, th, td, with colspan and rowspan to merge cells.","Images: img with src and alt attributes."]],
+["Forms",["form with action and method (GET or POST).","Controls: input (text, password, radio, checkbox, submit), select, textarea, button.","label improves accessibility; HTML5 adds required, pattern, email and date types."]],
+["Frames",["frameset and frame split the window (obsolete in HTML5).","iframe embeds another page inside a page and is still used.","Drawbacks: poor bookmarking, accessibility and SEO."]],
+["CSS",["Three ways: inline, internal (style tag), external (link to .css file).","Selectors: element, class (.x), id (#x), descendant, attribute, pseudo-class (:hover).","Box model: content, padding, border, margin. Layout: flexbox, grid.","Cascade: importance, then specificity, then source order."]],
+["Dynamic HTML with JavaScript",["DHTML = HTML + CSS + JavaScript + DOM.","JavaScript runs in the browser: variables, functions, events (onclick, onload).","Change the page with document.getElementById and element.innerHTML or style.","Validate forms before sending them to the server."]],
+["Document Type Definition (DTD)",["Defines allowed elements, attributes and nesting of an XML document.","Syntax: ELEMENT, ATTLIST, ENTITY declarations.","A document that follows its DTD is valid; correct syntax alone makes it well-formed."]],
+["XML schemas (XSD)",["Written in XML itself, unlike DTD.","Supports data types (string, integer, date), namespaces and constraints.","Elements can be simple or complex types."]],
+["Object models and presenting XML",["DOM models a document as a tree of node objects (element, attribute, text).","Present XML using CSS or transform it with XSLT into HTML.","XML rules: one root, properly nested, case-sensitive, closed tags."]],
+["XML processors: DOM and SAX",["DOM parser loads the whole tree in memory: random access, can modify, heavy for big files.","SAX is event-driven: callbacks like startElement and endElement, fast, low memory, read-only and forward only.","Choose DOM to edit or revisit data; SAX for large files read once."]]],
+K:["DHTML","Box model","Specificity","Well-formed","Valid","DTD","XSD","DOM","SAX","XSLT"],
+E:["Explain the CSS box model and the three ways to add CSS.","What is DHTML? How does JavaScript change a page?","Differentiate DTD and XML Schema.","Compare DOM and SAX parsers.","Write an HTML form with text, radio buttons and a submit button."]
+,Q:[["Which parser is event-driven?",["DOM","SAX","XSLT","CSS"],1],["XML schemas are written in:",["HTML","JSON","XML","CSS"],2],["Order from inside to outside in box model:",["margin, border, padding, content","content, padding, border, margin","padding, content, margin, border","content, border, padding, margin"],1]]},
+{id:"unit-3",n:"Unit 3",t:"Web services and AJAX",h:7,ov:"How applications talk to each other over the web, and how pages update without reloading.",
+T:[
+["Introduction to web services",["Self-contained services accessed over a network via standard protocols (HTTP, XML).","Platform and language independent: a Java client can call a .NET service.","Styles: SOAP-based and RESTful."]],
+["SOAP",["Simple Object Access Protocol: XML messaging, usually over HTTP.","Message: Envelope (root), Header (optional), Body (data), Fault (errors).","Heavier than REST but has strict contracts and built-in standards."]],
+["WSDL",["Web Services Description Language: XML contract of a service.","Main parts: types, message, portType (operations), binding, service (endpoint).","Clients read WSDL to know how to call the service."]],
+["UDDI",["Universal Description, Discovery and Integration: a registry of services.","Providers publish; requesters search and find.","White pages (business), yellow pages (category), green pages (technical)."]],
+["Web service architecture",["Roles: service provider, service requester, service registry.","Operations: publish, find, bind.","Stack: transport (HTTP), messaging (SOAP), description (WSDL), discovery (UDDI)."]],
+["Developing and deploying web services",["Create the service logic, expose it as a service, generate WSDL.","Deploy on an application server (Tomcat, Axis, JBoss).","Publish to a registry and test with a client or tool like SoapUI."]],
+["AJAX",["Asynchronous JavaScript and XML: update part of a page without a full reload.","Uses XMLHttpRequest (or fetch) and the DOM; data in XML, JSON or text.","Flow: event, create request, send, server responds, callback updates the DOM.","Benefits: faster, smoother, less bandwidth. Drawbacks: back button, SEO, needs JavaScript."]],
+["Improving performance with AJAX and programming",["Load only the needed data, cache responses, load content lazily.","readyState 4 and status 200 mean the response is ready.","Use fetch or XMLHttpRequest with open(), send() and onreadystatechange."]],
+["CORBA",["Common Object Request Broker Architecture from OMG.","Objects in different languages communicate via an ORB.","IDL defines interfaces; IIOP is the wire protocol; stubs and skeletons marshal calls."]]],
+K:["SOAP","WSDL","UDDI","Envelope","Provider/Requester/Registry","XMLHttpRequest","JSON","CORBA","ORB","IDL"],
+E:["Explain web service architecture with a diagram.","Describe the structure of a SOAP message.","What are WSDL and UDDI used for?","Explain AJAX with a working flow and a code snippet.","What is CORBA? Explain ORB and IDL."]
+,Q:[["Which describes a web service interface?",["UDDI","WSDL","DOM","MIME"],1],["Which is NOT a SOAP message part?",["Envelope","Body","Header","Registry"],3],["readyState value meaning request complete:",["1","2","3","4"],3]]},
+{id:"unit-4",n:"Unit 4",t:"Web 2.0 and Web 3.0",h:7,ov:"The social, interactive web and the semantic, data-driven web that followed.",
+T:[
+["Web 2.0: interactive and social web",["Shift from read-only (Web 1.0) to read-write with user participation.","Features: user-generated content, rich interfaces, sharing, APIs.","Blogs (personal posts), wikis (collaborative editing, e.g. Wikipedia), social networks (Facebook, X, LinkedIn)."]],
+["Technologies behind Web 2.0",["AJAX for responsive interfaces.","RSS: XML feed format that delivers updates to subscribers.","Ruby on Rails: MVC framework with convention over configuration.","Open APIs let others reuse data and services."]],
+["Web 3.0: Semantic Web",["Data given machine-readable meaning so software can understand it.","RDF: statements as triples (subject, predicate, object).","Ontologies (OWL) define concepts and relationships; SPARQL queries RDF."]],
+["Widgets and mashups",["Widgets: small embeddable components (weather, maps, chat).","Mashups combine data from several sources into a new service, e.g. map plus real-estate listings."]],
+["Web-based information systems",["Systems that collect, store and deliver information through the web: e-commerce, e-learning, portals.","Typically three-tier: client, application server, database."]],
+["Search engines",["Pipeline: crawl, index, rank, serve results.","Ranking uses relevance and link analysis (PageRank).","Basics of SEO: good content, keywords, fast pages."]],
+["Recommender systems",["Suggest items to users (Netflix, Amazon).","Types: collaborative filtering, content-based, hybrid.","Issues: cold start, privacy."]],
+["Benefits of blockchain",["Decentralised ledger of linked, hashed blocks.","Immutability, transparency, security, no central authority.","Uses: cryptocurrency, supply chains, smart contracts."]],
+["Edge computing",["Process data near its source rather than in a distant cloud.","Lower latency, saves bandwidth, works better offline, improves privacy."]],
+["Dark mode in web development",["Use CSS variables for colours.","@media (prefers-color-scheme: dark) follows the system setting.","Add a manual toggle and keep contrast accessible."]]],
+K:["Web 2.0","Blog","Wiki","RSS","Rails","Semantic Web","RDF","Mashup","PageRank","Blockchain","Edge"],
+E:["Compare Web 1.0, 2.0 and 3.0.","What is RSS? How does it work?","Explain the Semantic Web and RDF triples.","Describe how a search engine works.","Explain collaborative vs content-based recommendation."]
+,Q:[["An RDF statement has:",["Key, value","Subject, predicate, object","Head, body","Tag, attribute"],1],["RSS is based on:",["XML","SQL","CSS","PHP"],0],["A mashup:",["Hides data","Combines multiple sources","Compresses files","Encrypts traffic"],1]]},
+{id:"unit-5",n:"Unit 5",t:"Web 4.0 and emerging technologies",h:7,ov:"The intelligent, decentralised and immersive direction of the web.",
+T:[
+["Web 4.0: AI-powered web and personalised content",["Intelligent agents anticipate needs and automate decisions.","Personalisation using machine learning: feeds, recommendations, chatbots.","Concerns: privacy, bias, transparency."]],
+["Decentralized web (DWeb)",["Peer-to-peer hosting (IPFS) replaces central servers.","Users control their own data and identity.","Resists censorship and single points of failure."]],
+["Blockchain integration",["Smart contracts run automatically on a blockchain.","dApps: web front end plus blockchain back end (wallets such as MetaMask).","Challenges: speed, cost, scalability."]],
+["Internet of Things (IoT) in web development",["Everyday devices with sensors connect to the Internet.","Web dashboards and APIs monitor and control them.","Protocols: MQTT, CoAP, HTTP. Risks: security."]],
+["AR and VR in the web",["AR overlays digital content on the real world; VR creates a full virtual environment.","WebXR API and Three.js deliver them in a browser without apps.","Uses: shopping, education, virtual tours."]],
+["Smart web and adaptive interfaces",["Pages adapt to device, location, context and behaviour.","Examples: responsive layout, voice UI, accessibility settings, dark mode."]],
+["Web automation",["Automate repeated browser tasks, testing and data collection.","Tools: Selenium, Puppeteer, Playwright.","Be careful with site terms of service and bots."]],
+["Impact of 5G on web technologies",["Much higher speed, very low latency, many more devices per area.","Enables HD streaming, cloud gaming, real-time AR/VR and large IoT."]]],
+K:["Web 4.0","DWeb","IPFS","Smart contract","dApp","IoT","MQTT","AR/VR","WebXR","5G"],
+E:["Explain the features of Web 4.0.","What is the decentralised web? How does blockchain help?","Describe IoT in web development with examples.","How do AR and VR work on the web?","Discuss the impact of 5G on web technologies."]
+,Q:[["IPFS is used for:",["Email","Peer-to-peer file storage","Styling","Compilation"],1],["WebXR supports:",["AR and VR","SQL","SMTP","DNS"],0],["Which is an IoT protocol?",["MQTT","SOAP","XSD","RDF"],0]]}
+];
+var KEY="wt-progress-v2",st={};try{st=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+function sv(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+var nav=document.getElementById("nav"),main=document.getElementById("main"),cur=0,tot=0;
+D.forEach(function(u){tot+=u.T.length});
+function cnt(i){var k=0;D[i].T.forEach(function(_,j){if(st[i+"-"+j])k++});return k}
+function prog(){var n=0;D.forEach(function(_,i){n+=cnt(i)});
+ document.getElementById("fill").style.width=Math.round(n/tot*100)+"%";
+ document.getElementById("pct").textContent=n+" of "+tot+" topics studied ("+Math.round(n/tot*100)+"%)";
+ nav.querySelectorAll("a[data-i]").forEach(function(a){var i=+a.dataset.i;a.querySelector("small").textContent=cnt(i)+"/"+D[i].T.length+" topics · "+D[i].h+" hrs"})}
+function buildNav(){var h='<input type="search" id="s" placeholder="Search all topics" aria-label="Search all topics">';
+ D.forEach(function(u,i){h+='<a href="#'+u.id+'" data-i="'+i+'">'+u.n+': '+u.t+'<small></small></a>'});
+ h+='<button id="rs">Reset progress</button>';nav.innerHTML=h;
+ document.getElementById("rs").onclick=function(){if(confirm("Clear all progress?")){st={};sv();show()}};
+ document.getElementById("s").oninput=function(e){search(e.target.value.toLowerCase().trim())}}
+function show(){var i=D.findIndex(function(u){return "#"+u.id===location.hash});if(i<0)i=0;cur=i;var u=D[i],h="";
+ h+='<h2>'+u.n+': '+u.t+'</h2><p class="ov">'+u.ov+' ('+u.h+' hours)</p><h3 class="sec">Topics</h3>';
+ u.T.forEach(function(t,j){var id=i+"-"+j;h+='<details class="tp'+(st[id]?" done":"")+'"><summary><input type="checkbox" data-id="'+id+'"'+(st[id]?" checked":"")+' aria-label="Mark studied"><span>'+t[0]+'</span></summary><ul>';
+  t[1].forEach(function(b){h+='<li>'+b+'</li>'});h+='</ul></details>'});
+ h+='<h3 class="sec">Key terms</h3><div class="terms">';u.K.forEach(function(k){h+='<span>'+k+'</span>'});
+ h+='</div><h3 class="sec">Likely exam questions</h3><ol class="ex">';u.E.forEach(function(e){h+='<li>'+e+'</li>'});
+ h+='</ol><h3 class="sec">Quick quiz</h3>';
+ u.Q.forEach(function(q,k){h+='<div class="q" data-k="'+k+'"><p>'+q[0]+'</p>';q[1].forEach(function(o,m){h+='<button type="button" data-m="'+m+'">'+o+'</button>'});h+='</div>'});
+ h+='<p class="score" id="sc"></p><div class="pn">'+(i>0?'<a href="#'+D[i-1].id+'">Previous unit</a>':'<span></span>')+(i<D.length-1?'<a href="#'+D[i+1].id+'">Next unit</a>':'<span></span>')+'</div>';
+ main.innerHTML=h;nav.querySelectorAll("a[data-i]").forEach(function(a){a.classList.toggle("on",+a.dataset.i===i)});
+ window.sc=0;window.ans=0;prog();window.scrollTo(0,0)}
+function search(v){if(!v){show();return}var h='<h2>Search results</h2>',n=0;
+ D.forEach(function(u){u.T.forEach(function(t){var tx=(t[0]+" "+t[1].join(" ")).toLowerCase();if(tx.indexOf(v)>=0){n++;h+='<details class="tp" open><summary><span>'+t[0]+' <small>('+u.n+')</small></span></summary><ul>';t[1].forEach(function(b){h+='<li>'+b+'</li>'});h+='</ul></details>'}})});
+ main.innerHTML=h+(n?"":'<p class="ov">No topics match. Try a shorter keyword.</p>')}
+main.addEventListener("change",function(e){var id=e.target.dataset.id;if(!id)return;if(e.target.checked)st[id]=1;else delete st[id];sv();e.target.closest("details").classList.toggle("done",e.target.checked);prog()});
+main.addEventListener("click",function(e){var b=e.target;if(b.tagName==="INPUT"){e.stopPropagation();return}
+ if(b.dataset.m===undefined)return;var q=b.closest(".q");if(q.dataset.done)return;q.dataset.done=1;
+ var c=D[cur].Q[+q.dataset.k][2],m=+b.dataset.m;q.querySelectorAll("button")[c].classList.add("r");if(m!==c)b.classList.add("w");else window.sc++;
+ window.ans++;if(window.ans===D[cur].Q.length)document.getElementById("sc").textContent="Score: "+window.sc+" / "+window.ans});
+window.addEventListener("hashchange",show);buildNav();show();
+</script></body></html>
